@@ -159,12 +159,10 @@ private final Joystick m_opJoy1 = new Joystick(1);
     return m_speed.getSelected();
   }
 
-  //public Double getArmMove(){
-  //  return m_opJoy1.getRawAxis(1);
-  //}
 
-  public Command ArmMove(ArmSS, ){
-   return ArmMove(m_armss, m_opJoy1.getRawAxis(1));
+  public Command getArmMove( ){
+   return new ArmMove(
+        m_armss, () -> m_opJoy1.getRawAxis(1));
   }
 
 }
