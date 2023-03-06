@@ -45,7 +45,6 @@ public class RobotContainer {
     public final Drivetrain m_drivetrain = new Drivetrain();
     public final Vision m_vision = new Vision();
     private final Command m_LandDAuto = new AutonTime(m_drivetrain);
-
     public final ArmSS m_armss = new ArmSS();
 
     // Joysticks
@@ -103,6 +102,7 @@ private final Joystick m_opJoy1 = new Joystick(1);
 
 
     //m_drivetrain.setDefaultCommand(getArcadeDriveCommand());
+    m_armss.setDefaultCommand(getArmMove());
     //Run intake IN when the opJoy1 trigger is held
     new JoystickButton(m_opJoy1, 2).whenHeld(new ArmIn(m_armss));
     //Run intake OUT when the opJoy1 thumb button is held
@@ -152,7 +152,7 @@ private final Joystick m_opJoy1 = new Joystick(1);
    */
   public Command getArcadeDriveCommand() {
     return new DriveCommand(
-        m_drivetrain, () -> -m_controller.getRawAxis(2), () -> m_controller.getRawAxis(3));
+        m_drivetrain, () -> -m_controller.getRawAxis(1), () -> m_controller.getRawAxis(2));
   }
 
   public Command getIntakeSpeed(){
@@ -160,7 +160,7 @@ private final Joystick m_opJoy1 = new Joystick(1);
   }
 
 
-  public Command getArmMove( ){
+  public Command getArmMove(){
    return new ArmMove(
         m_armss, () -> m_opJoy1.getRawAxis(1));
   }
