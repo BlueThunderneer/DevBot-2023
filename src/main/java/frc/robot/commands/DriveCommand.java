@@ -54,8 +54,8 @@ public class DriveCommand extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        SpeedMulti = SmartDashboard.getNumber("SpeedMultiplier", 0);
-        m_drivetrain.arcadeDrive(m_xaxisSpeedSupplier.get()*SpeedMulti, -m_zaxisRotateSupplier.get());
+        //SpeedMulti = SmartDashboard.getNumber("SpeedMultiplier", 1);
+        m_drivetrain.arcadeDrive(m_xaxisSpeedSupplier.get(), -m_zaxisRotateSupplier.get());
     }
 
     // Called once the command ends or is interrupted.
