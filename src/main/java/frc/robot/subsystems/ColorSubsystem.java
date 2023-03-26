@@ -14,7 +14,7 @@ import com.revrobotics.ColorMatch;
 public class ColorSubsystem extends SubsystemBase {
     private final I2C.Port i2cPort = I2C.Port.kOnboard;
     private final ColorSensorV3 m_cs = new ColorSensorV3(i2cPort);  
-    public AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(10); 
+    public AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(44); 
     public AddressableLED m_led = new AddressableLED(9);
 
     public ColorSubsystem(){
@@ -36,16 +36,23 @@ public class ColorSubsystem extends SubsystemBase {
 
         
 //
-        for (var i = 0; i < m_ledBuffer.getLength(); i++) {
-            // Sets the specified LED to the RGB values for red
-            m_ledBuffer.setRGB(i, 0, 255, 0);
-         }
+ 
 
-         for (var i = 0; i < m_ledBuffer.getLength(); i++) {
-            // Sets the specified LED to the RGB values for red
-            m_ledBuffer.setRGB(i, 255, 0, 0);
+        for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+            if (proximity > 150){
+                // green
+                m_ledBuffer.setRGB(i, 0, 255, 0);
+
+            }
+            else{
+                // red
+                m_ledBuffer.setRGB(i, 255, 0, 0);
+
+            }
+            // Sets the specified LED to the RGB values for green
          }
-        
+    
+         //after if else send color to leds.
      m_led.setData(m_ledBuffer);
     }
 }
